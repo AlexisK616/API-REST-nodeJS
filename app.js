@@ -1,17 +1,23 @@
 const express =  require('express');
-const mongoose =  require('mongoose');
+const mongoose = require('mongoose');
 
 const app =  express();
 
-const port = process.env.PORT || 3000;
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+
+
+const port = process.env.PORT || 3100;
 
 app.listen(port,()=>{
     console.log(`server on port ${port}`);
 });
 
 
-const uriBD = 'localhost:27017/demo';
+const uriBD = 'mongodb://localhost:27017/demo';
 
-mongoose.connect(uriBD)
+mongoose.connect(uriBD,{useNewUrlParser:true})
 .then(console.log(`BD on ${uriBD}`))
 .catch(e => console.error(e));
+
+

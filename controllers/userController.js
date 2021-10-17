@@ -1,18 +1,37 @@
-const express =  require('express');
-const router =  express.Router();
-
-const baseUrl = '/api/user'
-
-router.get(baseUrl,(res,req)=>{
-
-});
-
-router.post(baseUrl,(req,res)=>{
-
-});
-
-router.put(baseUrl,(req,res)=>{
-
-});
+const express = require("express");
+const User = require("../models/userModel");
 
 
+const getUsers =  () => {
+
+}
+
+const updateUser = () => {
+
+}
+
+const getUserById = () => {
+
+}
+
+const deleteUser = () => {
+
+}
+
+const addUser = async (body) => {
+  let user = new User({
+    email: body.email,
+    password: body.password,
+  });
+  return await user.save();
+};
+
+
+
+module.exports = {
+    addUser,
+    getUserById,
+    getUsers,
+    updateUser,
+    deleteUser
+}
