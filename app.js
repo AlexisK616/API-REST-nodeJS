@@ -1,23 +1,23 @@
 const express =  require('express');
-const mongoose = require('mongoose');
+const {connection} = require('./config/dbConnect');
+
 
 const app =  express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+app.use('/api/',require('./routes/index'));
 
 
 const port = process.env.PORT || 3100;
 
+
+connection();
 app.listen(port,()=>{
     console.log(`server on port ${port}`);
 });
 
 
-const uriBD = 'mongodb://localhost:27017/demo';
 
-mongoose.connect(uriBD,{useNewUrlParser:true})
-.then(console.log(`BD on ${uriBD}`))
-.catch(e => console.error(e));
 
 
